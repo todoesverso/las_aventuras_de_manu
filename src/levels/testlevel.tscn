@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/levels/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://assets/3 - Tropics/Background parts/4 - Background_clouds.png" type="Texture" id=2]
+[ext_resource path="res://assets/3 - Tropics/Background parts/2 - Waters_version_2.png" type="Texture" id=3]
+[ext_resource path="res://assets/3 - Tropics/Background parts/1 - Waters_version_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/3 - Tropics/Background parts/5 - Sky_color.png" type="Texture" id=5]
+[ext_resource path="res://src/actors/Manu.tscn" type="PackedScene" id=6]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="5 - Sky_color" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 384, 216 )
+scale = Vector2( 2.66667, 2.07692 )
+texture = ExtResource( 5 )
+
+[node name="4 - Background_clouds" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 384, 160 )
+scale = Vector2( 2.66667, 2.61538 )
+texture = ExtResource( 2 )
+
+[node name="1 - Waters_version_1" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 384, 216 )
+scale = Vector2( 2.66667, 2.07692 )
+texture = ExtResource( 4 )
+
+[node name="2 - Waters_version_2" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 384, 216 )
+scale = Vector2( 2.66667, 2.07692 )
+texture = ExtResource( 3 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
+format = 1
+tile_data = PoolIntArray( 1703936, 1, 0, 1703937, 1, 0, 1703938, 1, 0, 1703939, 1, 0, 1703940, 1, 0, 1703941, 1, 0, 1703942, 1, 0, 1703943, 1, 0, 1703944, 1, 0, 1703945, 1, 0, 1703946, 1, 0, 1703947, 1, 0, 1703948, 1, 0, 1703949, 1, 0, 1703950, 1, 0, 1703951, 1, 0, 1703952, 1, 0, 1703953, 1, 0, 1703954, 1, 0, 1703955, 1, 0, 1703956, 1, 0, 1703957, 1, 0, 1703958, 1, 0, 1703959, 1, 0, 1703960, 1, 0, 1703961, 1, 0, 1703962, 1, 0, 1703963, 1, 0, 1703964, 1, 0, 1703965, 1, 0, 1703966, 1, 0, 1703967, 1, 0, 1703968, 1, 0, 1703969, 1, 0, 1703970, 1, 0, 1703971, 1, 0, 1703972, 1, 0, 1703973, 1, 0, 1703974, 1, 0, 1703975, 1, 0, 1703976, 1, 0, 1703977, 1, 0, 1703978, 1, 0, 1703979, 1, 0, 1703980, 1, 0, 1703981, 1, 0, 1703982, 1, 0, 1703983, 1, 0 )
+
+[node name="Manu" parent="." instance=ExtResource( 6 )]
+position = Vector2( 152, 120 )
