@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/levels/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://assets/3 - Tropics/Background parts/4 - Background_clouds.png" type="Texture" id=2]
@@ -7,40 +7,65 @@
 [ext_resource path="res://assets/3 - Tropics/Background parts/5 - Sky_color.png" type="Texture" id=5]
 [ext_resource path="res://src/actors/Manu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/actors/Enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/objects/Libro.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/1 - Grassland/Background parts/3 - Cloud_cover_1.png" type="Texture" id=9]
 
 [node name="TestLevel" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="5 - Sky_color" type="Sprite" parent="ParallaxBackground"]
-position = Vector2( 384, 216 )
-scale = Vector2( 2.66667, 2.07692 )
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 288, 0 )
+
+[node name="5 - Sky_color" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
 texture = ExtResource( 5 )
+centered = false
 
-[node name="4 - Background_clouds" type="Sprite" parent="ParallaxBackground"]
-position = Vector2( 384, 160 )
-scale = Vector2( 2.66667, 2.61538 )
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.7, 0.7 )
+motion_mirroring = Vector2( 288, 0 )
+
+[node name="3 - Cloud_cover_1" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource( 9 )
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.8, 0.8 )
+motion_offset = Vector2( 0.6, 0.6 )
+motion_mirroring = Vector2( 288, 0 )
+
+[node name="4 - Background_clouds" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
 texture = ExtResource( 2 )
+centered = false
 
-[node name="1 - Waters_version_1" type="Sprite" parent="ParallaxBackground"]
-position = Vector2( 384, 216 )
-scale = Vector2( 2.66667, 2.07692 )
-texture = ExtResource( 4 )
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.9, 0.9 )
+motion_mirroring = Vector2( 288, 0 )
 
-[node name="2 - Waters_version_2" type="Sprite" parent="ParallaxBackground"]
-position = Vector2( 384, 216 )
-scale = Vector2( 2.66667, 2.07692 )
+[node name="2 - Waters_version_2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 3 )
+centered = false
+
+[node name="1 - Waters_version_1" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 4 )
+centered = false
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 16, 0, 0, 16, 0, 0 )
 format = 1
-tile_data = PoolIntArray( 1572864, 0, 0, 1572911, 0, 0, 1638400, 0, 0, 1638447, 0, 0, 1703936, 1, 0, 1703937, 1, 0, 1703938, 1, 0, 1703939, 1, 0, 1703940, 1, 0, 1703941, 1, 0, 1703942, 1, 0, 1703943, 1, 0, 1703944, 1, 0, 1703945, 1, 0, 1703946, 1, 0, 1703947, 1, 0, 1703948, 1, 0, 1703949, 1, 0, 1703950, 1, 0, 1703951, 1, 0, 1703952, 1, 0, 1703953, 1, 0, 1703954, 1, 0, 1703955, 1, 0, 1703956, 1, 0, 1703957, 1, 0, 1703958, 1, 0, 1703959, 1, 0, 1703960, 1, 0, 1703961, 1, 0, 1703962, 1, 0, 1703963, 1, 0, 1703964, 1, 0, 1703965, 1, 0, 1703966, 1, 0, 1703967, 1, 0, 1703968, 1, 0, 1703969, 1, 0, 1703970, 1, 0, 1703971, 1, 0, 1703972, 1, 0, 1703973, 1, 0, 1703974, 1, 0, 1703975, 1, 0, 1703976, 1, 0, 1703977, 1, 0, 1703978, 1, 0, 1703979, 1, 0, 1703980, 1, 0, 1703981, 1, 0, 1703982, 1, 0, 1703983, 1, 0 )
+tile_data = PoolIntArray( 589870, 0, 0, 655360, 0, 0, 655406, 0, 0, 720896, 0, 0, 720942, 0, 0, 786432, 0, 0, 786433, 1, 0, 786434, 1, 0, 786435, 1, 0, 786436, 1, 0, 786437, 1, 0, 786438, 1, 0, 786439, 1, 0, 786440, 1, 0, 786441, 1, 0, 786442, 1, 0, 786443, 1, 0, 786444, 1, 0, 786445, 1, 0, 786446, 1, 0, 786447, 1, 0, 786448, 1, 0, 786449, 1, 0, 786450, 1, 0, 786451, 1, 0, 786452, 1, 0, 786453, 1, 0, 786454, 1, 0, 786455, 1, 0, 786456, 1, 0, 786457, 1, 0, 786458, 1, 0, 786459, 1, 0, 786460, 1, 0, 786461, 1, 0, 786462, 1, 0, 786463, 1, 0, 786464, 1, 0, 786465, 1, 0, 786466, 1, 0, 786467, 1, 0, 786468, 1, 0, 786469, 1, 0, 786470, 1, 0, 786471, 1, 0, 786472, 1, 0, 786473, 1, 0, 786474, 1, 0, 786475, 1, 0, 786476, 1, 0, 786477, 1, 0, 786478, 1, 0, 851968, 1, 0, 851969, 1, 0, 851970, 1, 0, 851971, 1, 0, 851972, 1, 0, 851973, 1, 0, 851974, 1, 0, 851975, 1, 0, 851976, 1, 0, 851977, 1, 0, 851978, 1, 0, 851979, 1, 0, 851980, 1, 0, 851981, 1, 0, 851982, 1, 0, 851983, 1, 0, 851984, 1, 0, 851985, 1, 0, 851986, 1, 0, 851987, 1, 0, 851988, 1, 0, 851989, 1, 0, 851990, 1, 0, 851991, 1, 0, 851992, 1, 0, 851993, 1, 0, 851994, 1, 0, 851995, 1, 0, 851996, 1, 0, 851997, 1, 0, 851998, 1, 0, 851999, 1, 0, 852000, 1, 0, 852001, 1, 0, 852002, 1, 0, 852003, 1, 0, 852004, 1, 0, 852005, 1, 0, 852006, 1, 0, 852007, 1, 0, 852008, 1, 0, 852009, 1, 0, 852010, 1, 0, 852011, 1, 0, 852012, 1, 0, 852013, 1, 0, 852014, 1, 0 )
 
 [node name="Manu" parent="." instance=ExtResource( 6 )]
-position = Vector2( 152, 120 )
+position = Vector2( 144, 96 )
 
 [node name="Enemy" parent="." instance=ExtResource( 7 )]
-position = Vector2( 668.534, 407.549 )
+position = Vector2( 280, 168 )
+speed = Vector2( 50, 400 )
+
+[node name="Libro" parent="." instance=ExtResource( 8 )]
+position = Vector2( 144, 160 )
+
+[node name="Libro2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 208, 144 )
