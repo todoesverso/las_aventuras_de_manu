@@ -1,17 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/libro.png" type="Texture" id=1]
+[ext_resource path="res://assets/books/book-OCAL.png" type="Texture" id=1]
 [ext_resource path="res://src/objects/Libro.gd" type="Script" id=2]
+[ext_resource path="res://assets/sounds/book.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+extents = Vector2( 4.51272, 3.9251 )
 
 [sub_resource type="Animation" id=2]
-resource_name = "bouncing"
 length = 1.8
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("libro:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -35,7 +35,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:position")
+tracks/2/path = NodePath(".:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -48,7 +48,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "fade_out"
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
@@ -60,7 +59,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.815686, 0.054902, 0.054902, 0.501961 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.243137, 0.803922, 0.0862745, 0.501961 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -82,15 +81,22 @@ collision_layer = 4
 script = ExtResource( 2 )
 
 [node name="libro" type="Sprite" parent="."]
-position = Vector2( 0.182721, -3.47175 )
+position = Vector2( 0.0739485, -3.17985 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
+vframes = 4
+hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.0605002, -2.60155 )
 shape = SubResource( 1 )
 
+[node name="AudioGrab" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+pitch_scale = 2.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../libro")
 autoplay = "bouncing"
 anims/bouncing = SubResource( 2 )
 anims/fade_out = SubResource( 3 )

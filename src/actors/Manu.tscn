@@ -1,15 +1,36 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://assets/Adventurer Sprite Sheet v1.1.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/Manu.gd" type="Script" id=2]
 [ext_resource path="res://src/objects/HealthBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/objects/Counter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sounds/stomp.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/music.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/jump.wav" type="AudioStream" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 9.11362
 height = 4.16348
 
 [sub_resource type="Animation" id=2]
-resource_name = "hurt"
+resource_name = "falling"
+length = 0.01
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 66 ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -33,27 +54,11 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 0.901961, 0.054902, 0.054902, 1 ), Color( 1, 0.305882, 0.305882, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "idle_left"
-length = 1.02
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115 ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.890196, 0.384314, 0.384314, 1 ), Color( 1, 0.305882, 0.305882, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=4]
+resource_name = "idle"
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -70,38 +75,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-resource_name = "jump_down_left"
-length = 0.35
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 172, 171, 170, 169 ]
-}
-
-[sub_resource type="Animation" id=6]
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 69, 68, 67, 66 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "jump_up_left"
+resource_name = "jump_down"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -110,15 +84,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 0.31864, 0.517632, 0.965936, 1 ),
 "update": 1,
-"values": [ 170, 171, 172, 173, 174 ]
+"values": [ 69, 68, 67, 66 ]
 }
 
-[sub_resource type="Animation" id=8]
-length = 2.0
-step = 0.5
+[sub_resource type="Animation" id=6]
+resource_name = "jump_up"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -126,16 +100,17 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 0.594604, 0.392292, 1 ),
 "update": 1,
 "values": [ 66, 67, 68, 69 ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "walk_left"
-length = 0.6
+[sub_resource type="Animation" id=7]
+resource_name = "jumping"
+length = 0.01
 loop = true
+step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -143,13 +118,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.392292 ),
 "update": 1,
-"values": [ 116, 117, 118, 119, 120, 121, 124 ]
+"values": [ 68 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
+resource_name = "walk"
 length = 0.7
 loop = true
 tracks/0/type = "value"
@@ -165,7 +141,24 @@ tracks/0/keys = {
 "values": [ 13, 14, 15, 16, 17, 18, 19 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=11]
+[sub_resource type="Animation" id=9]
+resource_name = "win"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 0.9, 1.2, 1.5, 1.8 ),
+"transitions": PoolRealArray( 1, 0.225313, 0.378929, 0.574349, 0.615572, 1.56917, 2.46229, 3.13834 ),
+"update": 1,
+"values": [ 83, 84, 85, 86, 87, 86, 85, 84 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=10]
 radius = 9.97371
 height = 4.29621
 
@@ -182,6 +175,12 @@ margin_top = 4.39398
 margin_right = 38.8706
 margin_bottom = 44.394
 
+[node name="Counter" parent="CanvasLayer" instance=ExtResource( 4 )]
+margin_left = 31.7571
+margin_top = 12.1974
+margin_right = 7.11714
+margin_bottom = 12.1414
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2.30283, 4.56611 )
 shape = SubResource( 1 )
@@ -190,25 +189,25 @@ shape = SubResource( 1 )
 texture = ExtResource( 1 )
 vframes = 16
 hframes = 13
-frame = 144
+frame = 83
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/hurt = SubResource( 2 )
-anims/idle_left = SubResource( 3 )
-anims/idle_right = SubResource( 4 )
-anims/jump_down_left = SubResource( 5 )
-anims/jump_down_right = SubResource( 6 )
-anims/jump_up_left = SubResource( 7 )
-anims/jump_up_right = SubResource( 8 )
-anims/walk_left = SubResource( 9 )
-anims/walk_right = SubResource( 10 )
+autoplay = "idle"
+anims/falling = SubResource( 2 )
+anims/hurt = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/jump_down = SubResource( 5 )
+anims/jump_up = SubResource( 6 )
+anims/jumping = SubResource( 7 )
+anims/walk = SubResource( 8 )
+anims/win = SubResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, 9.51361 )
 current = true
 limit_left = 0
 limit_top = 0
-limit_right = 752
+limit_right = 4512
 limit_bottom = 208
 limit_smoothed = true
 drag_margin_h_enabled = true
@@ -227,7 +226,20 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
 modulate = Color( 0.113725, 0.239216, 0.662745, 1 )
 position = Vector2( 2.18055, 0.86259 )
-shape = SubResource( 11 )
+shape = SubResource( 10 )
+
+[node name="AudioStomp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = -15.0
+pitch_scale = 1.5
+
+[node name="AudioJump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+volume_db = -10.0
+pitch_scale = 1.5
 [connection signal="animation_finished" from="Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]

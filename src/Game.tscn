@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Pause.gd" type="Script" id=1]
+[ext_resource path="res://src/levels/testlevel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/title.png" type="Texture" id=3]
+[ext_resource path="res://src/Game.gd" type="Script" id=4]
+
+[node name="Game" type="Node"]
+script = ExtResource( 4 )
+
+[node name="Level" parent="." instance=ExtResource( 2 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Pause" type="Control" parent="CanvasLayer"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.388235 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Pause"]
+position = Vector2( 144, 120 )
+rotation = -0.261799
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 3 )
