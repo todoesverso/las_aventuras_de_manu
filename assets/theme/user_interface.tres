@@ -61,7 +61,8 @@ border_width_bottom = 1
 border_color = Color( 0.41, 0.61, 0.91, 1 )
 
 [sub_resource type="DynamicFontData" id=6]
-font_path = "res://assets/theme/fonts/E4Ascii.ttf"
+antialiased = false
+font_path = "res://assets/theme/fonts/Minecraft.ttf"
 
 [sub_resource type="DynamicFont" id=7]
 size = 9
