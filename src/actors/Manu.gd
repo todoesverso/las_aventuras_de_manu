@@ -12,6 +12,7 @@ var max_hitpoints: int = hitpoints
 
 var facing_right: bool = true
 var hurt: bool = false
+var die: bool = false
 
 # warning-ignore:unused_signal
 signal collect_book()
@@ -19,13 +20,15 @@ signal collect_book()
 func _ready() -> void:
 	$Music.play()
 
-
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "hurt":
 		hurt = false
+	
+	if anim_name == "die":
+		die = false
 
 func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	hurt = true
@@ -35,8 +38,12 @@ func _on_EnemyDetector_body_entered(body: PhysicsBody2D) -> void:
 	if hitpoints <= 0:
 		die()
 
+func rest_health():
+	health_bar.set_percent_value_int(100)
+	hitpoints = 100
+
 func die() -> void:
-	pass
+	die = true
 
 func _physics_process(delta: float) -> void:
 	var is_jump_interrupted: = Input.is_action_just_released("jump") and _velocity.y < 0.0
@@ -46,7 +53,6 @@ func _physics_process(delta: float) -> void:
 	if direction.x != 0:
 		sprite.scale.x = 1 if direction.x > 0 else -1
 	animate()
-
 
 func get_direction() -> Vector2:
 	if Input.is_action_just_pressed("jump"):
@@ -82,6 +88,11 @@ func animate() -> void:
 		anim_player.play("hurt")
 		return
 
+	if die:
+		anim_player.play("die")
+		rest_health()
+		return
+
 	var animation_new = ""
 
 	if is_on_floor():
@@ -94,6 +105,7 @@ func animate() -> void:
 
 	if animation_new != anim_player.current_animation:
 		anim_player.play(animation_new)
+		
 
 func is_on_andino():
 	if 	camera.limit_right - camera.get_camera_position().x < 150:

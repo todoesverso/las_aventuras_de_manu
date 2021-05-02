@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/objects/DialogBox.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFontData" id=3]
+[sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/theme/fonts/Minecraft.ttf"
 
 [sub_resource type="DynamicFont" id=2]
@@ -12,13 +12,12 @@ outline_color = Color( 0.0235294, 0, 0, 1 )
 use_mipmaps = true
 use_filter = true
 extra_spacing_char = 2
-font_data = SubResource( 3 )
+font_data = SubResource( 1 )
 
-[sub_resource type="Theme" id=1]
+[sub_resource type="Theme" id=3]
 default_font = SubResource( 2 )
 
 [node name="DialogBox" type="Polygon2D"]
-position = Vector2( -1, 0 )
 color = Color( 0.0941176, 0.47451, 0.160784, 1 )
 antialiased = true
 polygon = PoolVector2Array( 0, 0, 256, 0, 256, 48, 0, 48 )
@@ -28,17 +27,17 @@ __meta__ = {
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color( 0.0117647, 0.356863, 0.180392, 1 )
-polygon = PoolVector2Array( 8, 8, 8, 8, 248, 8, 248, 40, 8, 40 )
+polygon = PoolVector2Array( 1, 1, 8, 1, 255, 1, 255, 47, 1, 47 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 16.0
-margin_top = 8.0
-margin_right = 240.0
-margin_bottom = 40.0
-theme = SubResource( 1 )
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 252.0
+margin_bottom = 44.0
+theme = SubResource( 3 )
 bbcode_enabled = true
 meta_underlined = false
 script = ExtResource( 2 )
@@ -48,5 +47,5 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.12
 autostart = true
