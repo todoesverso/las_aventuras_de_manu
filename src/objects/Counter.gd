@@ -3,7 +3,7 @@ extends Panel
 
 export var books_collected = 0
 
-onready var books_label = $Label2
+onready var books_label = $Label
 
 func missing_books():
 	return get_total_books() - books_collected
