@@ -102,7 +102,7 @@ position = Vector2( 1077.06, 23.358 )
 position = Vector2( 602.431, 108.307 )
 
 [node name="Libro63" parent="Libros" instance=ExtResource( 8 )]
-position = Vector2( 859.164, 46.9549 )
+position = Vector2( 858.81, 52.9653 )
 
 [node name="Libro12" parent="Libros" instance=ExtResource( 8 )]
 position = Vector2( 1053.46, 41.2916 )
