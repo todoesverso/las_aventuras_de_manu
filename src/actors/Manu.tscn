@@ -8,26 +8,25 @@
 [ext_resource path="res://assets/sounds/music.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sounds/jump.wav" type="AudioStream" id=7]
 
-[sub_resource type="DynamicFontData" id=12]
+[sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/theme/fonts/Minecraft.ttf"
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=2]
 size = 12
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 use_mipmaps = true
 use_filter = true
-font_data = SubResource( 12 )
+font_data = SubResource( 1 )
 
-[sub_resource type="Theme" id=14]
-default_font = SubResource( 13 )
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 9.11362
 height = 4.16348
 
-[sub_resource type="Animation" id=2]
-resource_name = "die"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -41,7 +40,7 @@ tracks/0/keys = {
 "values": [ 92, 93, 94, 95, 96, 97 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=6]
 length = 0.01
 loop = true
 step = 0.25
@@ -58,7 +57,7 @@ tracks/0/keys = {
 "values": [ 66 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -85,7 +84,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.890196, 0.384314, 0.384314, 1 ), Color( 1, 0.305882, 0.305882, 1 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=8]
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -101,7 +100,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=9]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -116,7 +115,7 @@ tracks/0/keys = {
 "values": [ 69, 68, 67, 66 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=10]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -131,7 +130,7 @@ tracks/0/keys = {
 "values": [ 66, 67, 68, 69 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=11]
 length = 0.01
 loop = true
 step = 0.25
@@ -148,7 +147,7 @@ tracks/0/keys = {
 "values": [ 68 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=12]
 length = 0.7
 loop = true
 tracks/0/type = "value"
@@ -164,7 +163,7 @@ tracks/0/keys = {
 "values": [ 13, 14, 15, 16, 17, 18, 19 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=13]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -180,7 +179,7 @@ tracks/0/keys = {
 "values": [ 83, 84, 85, 86, 87, 86, 85, 84 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=11]
+[sub_resource type="CapsuleShape2D" id=14]
 radius = 9.97371
 height = 4.29621
 
@@ -202,11 +201,11 @@ margin_left = 31.7571
 margin_top = 12.1974
 margin_right = 7.11714
 margin_bottom = 12.1414
-theme = SubResource( 14 )
+theme = SubResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2.30283, 4.56611 )
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -216,15 +215,15 @@ frame = 97
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 autoplay = "idle"
-anims/die = SubResource( 2 )
-anims/falling = SubResource( 3 )
-anims/hurt = SubResource( 4 )
-anims/idle = SubResource( 5 )
-anims/jump_down = SubResource( 6 )
-anims/jump_up = SubResource( 7 )
-anims/jumping = SubResource( 8 )
-anims/walk = SubResource( 9 )
-anims/win = SubResource( 10 )
+anims/die = SubResource( 5 )
+anims/falling = SubResource( 6 )
+anims/hurt = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/jump_down = SubResource( 9 )
+anims/jump_up = SubResource( 10 )
+anims/jumping = SubResource( 11 )
+anims/walk = SubResource( 12 )
+anims/win = SubResource( 13 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, 9.51361 )
@@ -250,7 +249,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetector"]
 modulate = Color( 0.113725, 0.239216, 0.662745, 1 )
 position = Vector2( 2.18055, 0.86259 )
-shape = SubResource( 11 )
+shape = SubResource( 14 )
 
 [node name="AudioStomp" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
